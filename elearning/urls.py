@@ -14,7 +14,10 @@ __copyright__ = '© 2019 unsta projet elaerning'
 
 from django.contrib import admin
 from django.urls import path
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
+    path('accounts/login/', auth_views.LoginView.as_view(), name='connexion'),
+    path('accounts/logout/', auth_views.LogoutView.as_view(), name='deconnexion'),
     path('admin/', admin.site.urls),
 ]

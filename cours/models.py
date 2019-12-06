@@ -17,6 +17,8 @@ from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 
+from .champs import ChampsPerso
+
 # Create your models here.
 
 class Matieres(models.Model):
@@ -51,12 +53,14 @@ class Modules(models.Model):
     cours = models.ForeignKey(Cours, on_delete=models.CASCADE)
     title = models.CharField('Titre du Module', max_length=200)
     description = models.TextField('Description du Cours', blank=True)
+    ordre = ChampsPerso(blank=True, for_fields={'cours'})
 
     class Meta:
         verbose_name = 'Module'
+        ordering = ['ordre']
 
     def __str__(self):
-        return self.title
+        return '{}. {}'.format(self.ordre, self.title)
 
 
 class Contenus(models.Model):
@@ -73,6 +77,11 @@ class Contenus(models.Model):
     )
     identifiant = models.PositiveIntegerField()
     item = GenericForeignKey('content_types', 'identifiant')
+    ordre = ChampsPerso(blank=True, for_fields=['modules'])
+
+    class Meta:
+        verbose_name = 'Contenu'
+        ordering = ['ordre']
 
 
 class TypeContenu(models.Model):
