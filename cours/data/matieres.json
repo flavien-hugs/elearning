@@ -1,0 +1,106 @@
+[
+  {
+    "model": "cours.matieres",
+    "pk": 1,
+    "fields": {
+      "title": "math\u00e9matique",
+      "slug": "mathematique"
+    }
+  },
+  {
+    "model": "cours.matieres",
+    "pk": 2,
+    "fields": {
+      "title": "anglais",
+      "slug": "anglais"
+    }
+  },
+  {
+    "model": "cours.matieres",
+    "pk": 3,
+    "fields": {
+      "title": "fran\u00e7ais",
+      "slug": "francais"
+    }
+  },
+  {
+    "model": "cours.matieres",
+    "pk": 4,
+    "fields": {
+      "title": "histoire",
+      "slug": "histoire"
+    }
+  },
+  {
+    "model": "cours.matieres",
+    "pk": 5,
+    "fields": {
+      "title": "g\u00e9ographie",
+      "slug": "geographie"
+    }
+  },
+  {
+    "model": "cours.matieres",
+    "pk": 6,
+    "fields": {
+      "title": "sciences physiques",
+      "slug": "sciences-physiques"
+    }
+  },
+  {
+    "model": "cours.matieres",
+    "pk": 7,
+    "fields": {
+      "title": "allemand",
+      "slug": "allemand"
+    }
+  },
+  {
+    "model": "cours.matieres",
+    "pk": 8,
+    "fields": {
+      "title": "espagnole",
+      "slug": "espagnole"
+    }
+  },
+  {
+    "model": "cours.matieres",
+    "pk": 9,
+    "fields": {
+      "title": "science de la vie et de la terre",
+      "slug": "science-de-la-vie-et-de-la-terre"
+    }
+  },
+  {
+    "model": "cours.matieres",
+    "pk": 10,
+    "fields": {
+      "title": "informatique",
+      "slug": "informatique"
+    }
+  },
+  {
+    "model": "cours.matieres",
+    "pk": 11,
+    "fields": {
+      "title": "musique",
+      "slug": "musique"
+    }
+  },
+  {
+    "model": "cours.matieres",
+    "pk": 12,
+    "fields": {
+      "title": "art plastique",
+      "slug": "art-plastique"
+    }
+  },
+  {
+    "model": "cours.matieres",
+    "pk": 13,
+    "fields": {
+      "title": "philosophie",
+      "slug": "philosophie"
+    }
+  }
+]

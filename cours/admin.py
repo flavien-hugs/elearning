@@ -36,5 +36,5 @@ class CoursAdmin(admin.ModelAdmin):
     list_display = ['title', 'theme', 'date_de_creation']
     list_filter = ('date_de_creation', 'theme')
     search_fields = ('title', 'resume')
-    prepopulated_fields = {'slug', ('title',)}
+    prepopulated_fields = {'slug': ('title',)}
     inlines = [ ModulesAdmin]

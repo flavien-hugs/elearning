@@ -26,6 +26,8 @@ SECRET_KEY = 'b^+&1$vwm+hcairl$@7-7xn6(=!pd_xz=hk9#9%_p7&^@dyxam'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+DEFAULT_CHARSET = 'utf-8'
+
 ALLOWED_HOSTS = []
 
 
