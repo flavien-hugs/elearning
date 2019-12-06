@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}n'souan{% endblock title %}</title>
+        <link rel="stylesheet" href="{% static "css/base.css" %}">
+    </head>
+
+
+    <body>
+        {# header top bar #}
+        <div id="header">
+            <a href="/" class="logo">n'souan</a>
+
+            <ul class="menu">
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url "connexion" %}" title="connexion">Connexion</a></li>
+                {% else %}
+                    <li><a href="{% url "deconnexion" %}">Deconnexion</a></li>
+                {% endif %}
+            </ul>
+        </div> {# end header top bar #}
+
+        <div id="content">
+            {% block content %}
+
+            {% endblock content %}
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                {% block domready %}
+                {% endblock %}
+            });
+        </script>
+    </body>
+</html>

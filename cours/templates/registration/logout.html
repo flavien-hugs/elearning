@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Deconnexion{% endblock title %}
+
+{% block content %}
+    <h1>Deconnexion</h1>
+    <div class="module">
+        <p>
+            You have been successfuly logged out.
+            You can <a href="{% url "connexion" %}">login again</a>.
+        </p>
+    </div>
+{% endblock content %}
