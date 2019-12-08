@@ -1,29 +1,27 @@
 {% extends "base.html" %}
-
 {% block title %}
     {% if object %}
-        Edit Courses "{{ object.title }}"
+        Edit content "{{ object.title }}"
     {% else %}
-        Create a new courses
+        Add a new content
     {% endif %}
-{% endblock title %}
-
+{% endblock %}
 
 {% block content %}
     <h1>
         {% if object %}
-            Edit course "{{ object.title|safe }}"
+            Edit content "{{ object.title }}"
         {% else %}
-            Create a new course
+            Add a new content
         {% endif %}
     </h1>
 
     <div class="module">
         <h2>Course info</h2>
-        <form action="." method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             {{ form.as_p }}
-        {% csrf_token %}
-            <p><input type="submit" value="Save course"></p>
+            {% csrf_token %}
+            <p><input type="submit" value="Save content"></p>
         </form>
     </div>
 {% endblock %}

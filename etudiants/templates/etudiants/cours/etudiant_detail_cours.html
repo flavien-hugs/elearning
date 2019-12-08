@@ -1,0 +1,36 @@
+{# Template permettant aux étudiants inscrits d'accéder au contenu d'un cours. #}
+
+{% extends "base.html" %}
+{% load cache %}
+{% block title %}{{ object.title }}{% endblock title %}
+
+{% block content %}
+    <h1>{{ module.title|upper }}</h1>
+
+    <div class="contents">
+        <h3>Modules</h3>
+        <ul id="modules">
+            {% for m in object.modules.all %}
+                <li data-id="{{ m.id }}" {% if m == module %}class="selected"{% endif %}>
+                    <a href="{% url "etudiant:etudiant_detail_cours_module" object.id m.id %}">
+                        <span> Module <span class="order">{{ m.ordre|add:1 }}</span>
+                        </span><br>{{ m.title }}
+                    </a>
+                </li>
+            {% empty %}
+                <li>No modules yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="module">
+        {% cache 600 module_contenus module %}
+            {% for contenu in module.contenus.all %}
+                {% with item=contenu.item %}
+                    <h2>{{ item.title }}</h2>
+                    {{ item.render }}
+                {% endwith %}
+            {% endfor %}
+        {% endcache %}
+    </div>
+{% endblock content %}

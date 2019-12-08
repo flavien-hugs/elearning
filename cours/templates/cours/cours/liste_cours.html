@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if matiere %}
+        {{ matiere.title }} courses
+    {% else %}
+        All courses
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <h1>
+        {% if matiere %}
+            {{ matiere.title|upper }} courses
+        {% else %}
+            All courses
+        {% endif %}
+    </h1>
+
+    <div class="contents">
+        <h3>Subjects</h3>
+        <ul id="modules">
+            <li {% if not matiere %}class="selected"{% endif %}>
+                <a href="{% url "liste_cours" %}">All</a>
+            </li>
+            {% for mat in matieres %}
+                <li {% if matiere == mat %}class="selected"{% endif %}>
+                    <a href="{{ mat.get_absolute_url }}">
+                        {{ mat.title|upper }}
+                        <br><span>{{ mat.total_cours }} courses</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+    <div class="module">
+        {% for c in cours %}
+            {% with matiere=c.matiere %}
+                <h3>
+                    <a href="{{ c.get_absolute_url }}">{{ c.title|upper }}</a>
+                </h3>
+                <p>
+                    <a href="{{ matiere.get_absolute_url }}">
+                        {{ matiere|upper }}
+                    </a>.
+                    Instructor: {{ c.instructeur }} &smid;
+                    {{ c.total_modules }} modules &smid;
+                    Date de Création : {{ c.date_de_creation }}
+                </p>
+            {% endwith %}
+        {% endfor %}
+    </div>
+{% endblock %}

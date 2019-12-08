@@ -32,9 +32,9 @@ class ModulesAdmin(admin.StackedInline):
 @admin.register(Cours)
 class CoursAdmin(admin.ModelAdmin):
     date_hierarchy = 'date_de_creation'
-    ordering = ('theme', 'title')
-    list_display = ['title', 'theme', 'date_de_creation']
-    list_filter = ('date_de_creation', 'theme')
+    ordering = ('matiere', 'title')
+    list_display = ['title', 'matiere', 'date_de_creation']
+    list_filter = ('date_de_creation', 'matiere')
     search_fields = ('title', 'resume')
     prepopulated_fields = {'slug': ('title',)}
     inlines = [ ModulesAdmin]

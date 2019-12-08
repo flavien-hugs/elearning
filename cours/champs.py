@@ -29,7 +29,7 @@ class ChampsPerso(models.PositiveIntegerField):
                     query = {field: getattr(model_instance, field) for field in self.for_fields}
                     queryset = queryset.filter(**query)
                 last_item = queryset.latest(self.attname)
-                value = last_item.order + 1
+                value = last_item.ordre + 1
             except ObjectDoesNotExist:
                 value = 0
             setattr(model_instance, self.attname, value)

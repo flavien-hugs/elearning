@@ -1,0 +1,26 @@
+{# template qui affiche les cours auxquelles l'utilisateur s'est inscrit. #}
+
+{% extends "base.html" %}
+{% load cache %}
+
+{% block title %}My courses{% endblock title %}
+
+{% block content %}
+    <h1>My courses</h1>
+
+    <div class="module">
+        {% for cours in object_list %}
+            <div class="course-info">
+                <h3>{{ cours.title }}</h3>
+                <p>
+                    <a href="{% url "etudiant:etudiant_detail_cours" cours.id %}" title="{{ cours.title }}">Access contents</a>
+                </p>
+            </div>
+        {% empty %}
+            <p>
+                You are not enrolled in any courses yet.
+                <a href="{% url "liste_cours" %}">Browse courses</a> to enroll in a course.
+            </p>
+        {% endfor %}
+    </div>
+{% endblock content %}
