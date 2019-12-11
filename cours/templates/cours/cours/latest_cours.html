@@ -1,0 +1,54 @@
+{% load static cours %}{% get_static_prefix as STATIC_PREFIX %}
+
+    <div class="popular_courses lite_bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="main_title">
+                        <h2 class="text-capitalize">latest courses</h2>
+                        <p>There is a moment in the life of any aspiring astronomer that it is time to buy that first telescope. It’s exciting to think about setting up your own viewing station.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- single course -->
+                {% for c in latest_cours %}
+                    {% with matiere=c.matiere %}
+                        <div class="col-lg-3 col-md-6">
+                            <div class="single_course">
+                                <div class="course_head overlay">
+                                    <img class="img-fluid w-100" src="{{ STATIC_PREFIX }}img/courses/trainer1.jpg" alt="{{ c.title }}">
+                                    <div class="authr_meta">
+                                        <img src="{{ STATIC_PREFIX }}img/author1.png" alt="">
+                                        <span>{{ c.instructeur|safe }}</span>
+                                    </div>
+                                </div>
+                                <div class="course_content">
+                                    <h4>
+                                        <a href="{{ c.get_absolute_url }}">{{ c.title|safe }}</a>
+                                    </h4>
+                                    <p>{{ c.resume|truncatewords:20|safe }}</p>
+                                    <div class="course_meta d-flex justify-content-between">
+                                        <div>
+                                            <span class="meta_info">
+                                                <i class="fa fa-tag"></i>
+                                                <a href="{{ matiere.get_absolute_url }}">
+                                                    {{ matiere|upper }}
+                                                </a>
+                                            </span>
+
+                                            <span class="meta_info text-uppercase">
+                                                <i class="fa fa-clock-o"></i>
+                                                {{ c.date_de_creation|date:"M Y" }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endwith %}
+                {% empty %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>

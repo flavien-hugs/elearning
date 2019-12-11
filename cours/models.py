@@ -59,6 +59,15 @@ class Cours(models.Model):
     def get_absolute_url(self):
         return reverse('cours:cours_detail', args=[self.slug])
 
+    def get_edit_url(self):
+        return reverse('cours:cours_edit', args=[self.id])
+
+    def get_delete_url(self):
+        return reverse('cours:cours_delete', args=[self.id])
+
+    def get_update_url(self):
+        return reverse('cours:cours_module_update', args=[self.id])
+
 
 class Modules(models.Model):
     cours = models.ForeignKey(Cours, related_name='modules', on_delete=models.CASCADE)

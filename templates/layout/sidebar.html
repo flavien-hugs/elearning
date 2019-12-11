@@ -1,0 +1,163 @@
+{% load static %}{% get_static_prefix as STATIC_PREFIX %}
+
+<div class="col-lg-4 right-contents">
+    <ul>
+        <li>
+            <a class="justify-content-between d-flex" href="#">
+                <p>Instructeur</p>
+                <span class="or">{{ cours.instructeur|safe }}</span>
+            </a>
+        </li>
+        <li>
+            <a class="justify-content-between d-flex" href="#">
+                <p>Matière </p>
+                <span>{{ cours.matiere|upper }}</span>
+            </a>
+        </li>
+        <li>
+            <a class="justify-content-between d-flex" href="#">
+                <p>Nombre de modules </p>
+                <span>{{ cours.modules.count }}</span>
+            </a>
+        </li>
+        <li>
+            <a class="justify-content-between d-flex" href="#">
+                <p>Date de mise en ligne </p>
+                <span>{{ cours.date_de_creation }}</span>
+            </a>
+        </li>
+    </ul>
+    {% if request.user.is_authenticated %}
+        <form action="{% url "etudiant:etudiant_enrollement_cours" %}" method="post">
+            {{ formulaire_enrollement }}
+            {% csrf_token %}
+            <input type="submit" class="primary-btn text-uppercase enroll" value="Enroll now">
+        </form>
+        {% else %}
+            <a href="{% url "etudiant:etudiant_registration" %}" class="primary-btn text-uppercase enroll">Enroll the course</a>
+    {% endif %}
+
+
+    <h4 class="title">Reviews</h4>
+    <div class="content">
+        <div class="review-top row pt-40">
+            <div class="col-lg-12">
+                <h6 class="mb-15">Provide Your Rating</h6>
+                <div class="d-flex flex-row reviews justify-content-between">
+                    <span>Quality</span>
+                    <div class="star">
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <span>Outstanding</span>
+                </div>
+                <div class="d-flex flex-row reviews justify-content-between">
+                    <span>Puncuality</span>
+                    <div class="star">
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <span>Outstanding</span>
+                </div>
+                <div class="d-flex flex-row reviews justify-content-between">
+                    <span>Quality</span>
+                    <div class="star">
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <span>Outstanding</span>
+                </div>
+            </div>
+        </div>
+        <div class="feedeback">
+            <h6>Your Feedback</h6>
+            <textarea name="feedback" class="form-control" cols="10" rows="10"></textarea>
+            <div class="mt-10 text-right">
+                <a href="#" class="primary-btn text-right text-uppercase">Submit</a>
+            </div>
+        </div>
+        <div class="comments-area mb-30">
+            <div class="comment-list">
+                <div class="single-comment single-reviews justify-content-between d-flex">
+                    <div class="user justify-content-between d-flex">
+                        <div class="thumb">
+                            <img src="{{ STATIC_PREFIX }}img/blog/c1.jpg" alt="">
+                        </div>
+                        <div class="desc">
+                            <h5><a href="#">Emilly Blunt</a>
+                                <div class="star">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                            </h5>
+                            <p class="comment">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                                eiusmod tempor incididunt ut labore et dolore.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="comment-list">
+                <div class="single-comment single-reviews justify-content-between d-flex">
+                    <div class="user justify-content-between d-flex">
+                        <div class="thumb">
+                            <img src="{{ STATIC_PREFIX }}img/blog/c2.jpg" alt="">
+                        </div>
+                        <div class="desc">
+                            <h5><a href="#">Elsie Cunningham</a>
+                                <div class="star">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                            </h5>
+                            <p class="comment">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                                eiusmod tempor incididunt ut labore et dolore.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="comment-list">
+                <div class="single-comment single-reviews justify-content-between d-flex">
+                    <div class="user justify-content-between d-flex">
+                        <div class="thumb">
+                            <img src="{{ STATIC_PREFIX }}img/blog/c3.jpg" alt="">
+                        </div>
+                        <div class="desc">
+                            <h5><a href="#">Maria Luna</a>
+                                <div class="star">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                            </h5>
+                            <p class="comment">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                                eiusmod tempor incididunt ut labore et dolore.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

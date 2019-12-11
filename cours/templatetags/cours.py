@@ -13,7 +13,9 @@ __copyright__ = '© 2019 unsta projet elaerning'
 
 
 from django import template
+from django.db.models import Count
 
+from ..models import Cours
 
 register = template.Library()
 
@@ -23,3 +25,9 @@ def model_name(obj):
         return obj._meta.model_name
     except AttributeError:
         return None
+
+@register.inclusion_tag('cours/cours/latest_cours.html')
+def show_latest_cours(count=4):
+    latest_cours = Cours.objects.filter(date_de_creation__isnull=False).order_by('-date_de_creation')[:count]
+    context = { 'latest_cours': latest_cours }
+    return context

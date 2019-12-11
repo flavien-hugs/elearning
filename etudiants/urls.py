@@ -26,8 +26,8 @@ urlpatterns = [
         name='etudiant_enrollement_cours'),
     path('cours/', views.EtudiantCoursListView.as_view(),
         name='etudiant_liste_cours'),
-    path('cours/<pk>/', cache_page(60*15)(views.EtudiantCoursDetailView.as_view()),
+    path('cours/<pk>/', cache_page(60*1)(views.EtudiantCoursDetailView.as_view()),
         name='etudiant_detail_cours'),
-    path('cours/<pk>/<module_id>/', cache_page(60*15)(views.EtudiantCoursDetailView.as_view()),
+    path('cours/<pk>/<module_id>/', cache_page(60*1)(views.EtudiantCoursDetailView.as_view()),
         name='etudiant_detail_cours_module'),
 ]

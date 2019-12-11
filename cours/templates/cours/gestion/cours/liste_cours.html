@@ -2,25 +2,65 @@
 {% block title %}My courses{% endblock %}
 
 {% block content %}
-    <h1>My courses</h1>
-    <div class="module">
-        {% for cours in object_list %}
-            <div class="course-info">
-                <h3>{{ cours.title }}</h3>
-                <p>
-                    <a href="{% url "cours:cours_edit" cours.id %}">Edit</a>
-                    <a href="{% url "cours:cours_delete" cours.id %}">Delete</a>
-                    <a href="{% url "cours:cours_module_update" cours.id %}">Edit modules</a>
-                    {% if cours.modules.count > 0 %}
-                        <a href="{% url "cours:module_content_liste" cours.modules.first.id %}">Manage contents</a>
-                    {% endif %}
-                </p>
+    <div class="popular_courses">
+        <div class="container">
+            {# First row [cours management] #}
+            <h2 class="font-weight-bold mb-1">My courses</h2>
+            <p class="font-italic text-muted mb-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+
+            <div class="row pb-3">
+                {% for cours in object_list %}
+                    <div class="col-lg-3 col-md-6 mb-3 mb-lg-2">
+                        <div class="card rounded shadow-sm border-0">
+                            <div class="card-body p-4">
+                                <img class="img-fluid d-block mx-auto mb-3" src="{{ STATIC_PREFIX }}img/courses/trainer1.jpg" alt="{{ c.title }}">
+                                <h5><a href="{{ cours.get_absolute_url }}" class="text-dark">
+                                    {{ cours.title|title|safe }}
+                                </a></h5>
+                                <p class="small text-muted font-italic">
+                                    {{ cours.resume|safe|truncatewords:15 }}
+                                </p>
+
+                                <ul class="text-center manage mb-0 list-inline mt-3">
+                                    <li class="list-inline-item m-0">
+                                        <a href="{{ cours.get_edit_url }}" title="Editer le contenu" class="manage-link">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                    </li>
+
+                                    <li class="list-inline-item m-0">
+                                        <a href="{{ cours.get_delete_url }}" title="Supprimer ce cours" class="manage-link">
+                                            <i class="fa fa-trash-o"></i>
+                                        </a>
+                                    </li>
+
+                                    <li class="list-inline-item m-0">
+                                        <a href="{{ cours.get_update_url }}" title="Mettre à jour les modules" class="manage-link">
+                                            <i class="fa fa-refresh"></i>
+                                        </a>
+                                    </li>
+
+                                    {% if cours.modules.count > 0 %}
+                                        <li class="list-inline-item m-0">
+                                            <a href="{% url "cours:module_content_liste" cours.modules.first.id %}" title="Gestion de contenu" class="manage-link">
+                                                <i class="fa fa-bookmark-o"></i>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p class="font-italic text-muted mb-1">You haven't created any courses yet.</p>
+                {% endfor %}
             </div>
-        {% empty %}
-            <p>You haven't created any courses yet.</p>
-        {% endfor %}
-        <p>
-            <a href="{% url "cours:cours_create" %}" class="button">Create new course</a>
-        </p>
+
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6">
+                    <a href="create/" class="btn btn-primary shadow-none rounded-pill py-2 btn-block text-uppercase">Create new course</a>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

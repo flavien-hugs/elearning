@@ -6,21 +6,129 @@
 {% block title %}My courses{% endblock title %}
 
 {% block content %}
-    <h1>My courses</h1>
-
-    <div class="module">
-        {% for cours in object_list %}
-            <div class="course-info">
-                <h3>{{ cours.title }}</h3>
-                <p>
-                    <a href="{% url "etudiant:etudiant_detail_cours" cours.id %}" title="{{ cours.title }}">Access contents</a>
-                </p>
+    {% block banner_area %}
+        <!--================ Start Home Banner Area =================-->
+        <section class="banner_area">
+            <div class="banner_inner d-flex align-items-center">
+                <div class="overlay"></div>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="banner_content text-center">
+                                <h2>My Courses</h2>
+                                <p>
+                                    In the history of modern astronomy, there is probably no one greater leap forward than the building and launch
+                                    ofthe space telescope known as the Hubble.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        {% empty %}
-            <p>
-                You are not enrolled in any courses yet.
-                <a href="{% url "liste_cours" %}">Browse courses</a> to enroll in a course.
-            </p>
-        {% endfor %}
-    </div>
+        </section><!--================ End Home Banner Area =================-->
+    {% endblock banner_area %}
+
+    {% block popular_courses %}
+        <!--================ Start Popular Courses Area =================-->
+        <div class="popular_courses lite_bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 my-4">
+                        <hr data-content="mes cours" class="hr-text">
+                    </div>
+                    <!-- table list cours -->
+                    <div class="col-lg-12 p-3 rounded shadow-sm">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr class="bg-primary text-white">
+                                        <th scope="col" class="border-0">
+                                            <div class="p-1 px-3 text-uppercase">cours</div>
+                                        </th>
+
+                                        <th scope="col" class="border-0">
+                                            <div class="p-1 px-3 text-uppercase">date d'inscription</div>
+                                        </th>
+
+                                        <th scope="col" class="border-0">
+                                            <div class="p-1 px-3 text-uppercase">progression</div>
+                                        </th>
+
+                                        <th scope="col" class="border-0">
+                                            <div class="p-1 px-3 text-uppercase">certificats</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for c in object_list %}
+                                        <tr>
+                                            <th scope="row" class="border-0">
+                                                <div class="p-2">
+                                                    <div class="ml-3 d-inline-block align-middle">
+                                                    <h5 class="mb-0">
+                                                        <a href="{% url "etudiant:etudiant_detail_cours" c.id %}" class="text-dark d-inline-block align-middle">{{ c.title|safe }}
+                                                        </a>
+                                                    </h5>
+                                                  </div>
+                                                </div>
+                                            </th>
+                                            <td class="border-0 align-middle"><strong>{{ c.date_de_creation|date}}</strong></td>
+                                            <td class="border-0 align-middle text-center"><strong>3</strong></td>
+                                            <td class="border-0 align-middle text-center"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
+                                        </tr>
+                                    {% empty %}
+
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="popular_courses lite_bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 my-4">
+                        <hr data-content="Derniers cours publiés " class="hr-text">
+                    </div>
+                    {% for c in object_list %}
+                        <div class="col-lg-3 col-md-6">
+                            <div class="single_course">
+                                <div class="course_head overlay">
+                                    <img class="img-fluid w-100" src="{{ STATIC_PREFIX }}img/courses/trainer1.jpg" alt="{{ c.title }}">
+                                </div>
+                                <div class="course_content">
+                                    <h4>
+                                        <a href="{% url "etudiant:etudiant_detail_cours" c.id %}">{{ c.title|safe }}</a>
+                                    </h4>
+                                    <p>{{ c.resume|truncatewords:20|safe }}</p>
+                                    <div class="course_meta d-flex justify-content-between">
+                                        <div>
+                                            <span class="meta_info text-uppercase">
+                                                <i class="fa fa-clock-o"></i>
+                                                {{ c.date_de_creation|date:"M Y" }}
+                                            </span>
+
+                                            <span class="meta_info text-uppercase">
+                                                <a href="{% url "etudiant:etudiant_detail_cours" c.id %}">access contents</a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% empty %}
+                    <p>
+                        You are not enrolled in any courses yet.
+                        <a href="{% url "liste_cours" %}">Browse courses</a> to enroll in a course.
+                    </p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!--================ End Popular Courses Area =================-->
+    {% endblock popular_courses %}
 {% endblock content %}

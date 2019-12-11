@@ -1,23 +1,74 @@
 {% extends "base.html" %}
+{% load static %}{% get_static_prefix as STATIC_PREFIX %}
 {% block title %}Connexion{% endblock title %}
 
-
 {% block content %}
-    <h1>Connexion</h1>
-    <div class="module">
-        {% if form.errors %}
-            <p>Your username and password didn't match. Please try again.</p>
-        {% else %}
-            <p>Please, use the following form to log-in:</p>
-        {% endif %}
+    <div class=" page-holder bg-cover" style="background: url('{{ STATIC_PREFIX }}/img/things.jpeg');">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                    <div class="card card-signin my-5">
+                        <div class="card-body">
+                            <h4 class="card-title text-center text-uppercase font-weight-bold">connexion</h4>
 
-        <div class="login-form">
-            <form action="{% url 'connexion' %}" method="post">
-                {{ form.as_p }}
-                {% csrf_token %}
-                <input type="hidden" name="next" value="{{ next }}">
-                <p><input type="submit" value="Log-in"></p>
-            </form>
+                            <button class="shadow-sm btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fa fa-google mr-2"></i> Sign in with Google</button>
+                            <button class="shadow-sm btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fa fa-facebook-f mr-2"></i> Sign in with Facebook</button>
+
+                            <div class="my-4">
+                                <hr data-content="OU" class="hr-text">
+                            </div>
+
+                            {% if form.non_field_errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    {% for error in form.non_field_errors %}
+                                        <p {% if forloop.last %} class="mb-0"{% endif %}>
+                                        {{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <p class="text-muted text-center">Please enter your username and password to login.</p>
+                            {% endif %}
+                            <form action="{% url "connexion" %}" method="post" class="form-signin">
+                                <div class="form-group">
+                                    <input type="text" id="{{ form.username.id_for_label }}" class="form-control shadow-sm" placeholder="{{ form.username.label }}" name="{{ form.username.name }}" required autofocus>
+                                    <label for="{{ form.username.id_for_label }}">
+                                        {{ form.username.label }}
+                                    </label>
+                                </div><!-- /.username input -->
+
+                                <div class="form-group">
+                                    <input type="password" id="{{ form.password.id_for_label }}" class="form-control shadow-sm" placeholder="{{ form.password.label }}" name="{{ form.password.name }}" required>
+                                    <label for="{{ form.password.id_for_label }}">
+                                        {{ form.password.label }}
+                                    </label>
+                                </div><!-- /.password input -->
+
+                                <p>
+                                    <a href="#"><u class="text-primary">Mot de passe oublié ?</u></a>
+                                </p>
+
+                                {% csrf_token %}
+
+                                <input type="hidden" name="next" value="{{ next }}">
+
+                                <button class="shadow-sm btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+
+                                <hr class="my-4">
+
+                                <div class="">
+                                    <p class="text-center font-small grey-text">
+                                        Pas encore membre ?
+                                        <a href="{% url "etudiant:etudiant_registration" %}" class="dark-grey-text font-weight-bold ml-1">
+                                            <u>Incrivez-vous gratuitement</u>
+                                        </a>
+                                        en 30 s
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

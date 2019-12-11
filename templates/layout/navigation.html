@@ -1,0 +1,112 @@
+        {% load static %}{% get_static_prefix as STATIC_PREFIX %}
+
+        {# header top bar #}
+        <header class="header_area">
+            <div class="header-top">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 col-sm-6 col-4 header-top-left">
+                            <a href="tel:+225 51 571 396">
+                                <span class="lnr lnr-phone"></span>
+                                <span class="text">
+                                    <span class="text">+225 51 571 396</span>
+                                </span>
+                            </a>
+                            <a href="mailto:unsta@pm.me">
+                                <span class="lnr lnr-envelope"></span>
+                                <span class="text">
+                                    <span class="text">unsta@pm.me</span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-8 header-top-right">
+                            {% if request.user.is_authenticated %}
+                                <a class="text-uppercase" href="{% url "deconnexion" %}">se deconnecter</a>
+                            {% else %}
+                                <a class="text-uppercase" href="{% url "connexion" %}">se connecter</a>
+                                <a class="text-uppercase" href="{% url "etudiant:etudiant_registration" %}">s'inscrire</a>
+                            {% endif %}
+                            <a class="text-uppercase" href="#">en savoir plus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main_menu">
+                {% if request.user.is_authenticated %}
+                    <div class="search_input" id="search_input_box">
+                        <div class="container">
+                            <form class="d-flex justify-content-between" method="" action="">
+                                <input type="text" class="form-control" id="search_input" placeholder="Rechercher ">
+                                <button type="submit" class="btn"></button>
+                                <span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <a class="navbar-brand logo_h" href="/">
+                            <img src="{{ STATIC_PREFIX }}img/logo.png" alt="">
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                            <ul class="nav navbar-nav menu_nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">parcours</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {% if cours == cours %}active{% endif %}" href="cours/">cours</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">alternance</a>
+                                </li>
+                                {% if request.user.is_authenticated %}
+                                    <li class="nav-item">
+                                        <a class="nav-link search" id="search">
+                                            <i class="lnr lnr-magnifier font-weight-bold"></i>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item avatar dropdown">
+                                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <img src="{{ STATIC_PREFIX }}img/avatar.jpg" class="rounded-circle" alt="avatar image" height="35">
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
+                                          aria-labelledby="navbarDropdownMenuLink">
+                                            <span class="dropdown-item font-weight-bolder text-capitalize">
+                                                <i class="fa fa-user mr-3"></i>{{ user.username }}
+                                            </span>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item font-weight-bold" href="{% url "etudiant:etudiant_liste_cours" %}">
+                                                <i class="fa fa-home mr-3"></i>Tableau de bord
+                                            </a>
+                                            <a class="dropdown-item font-weight-bold" href="#">
+                                                <i class="fa fa-cog mr-3"></i>Mes paramètres
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item font-weight-bold" href="{% url "cours:gestion_liste_cours" %}">
+                                                <i class="fa fa-book mr-3"></i>Mes cours
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item font-weight-bold" href="{% url "deconnexion" %}">
+                                                <i class="fa fa-power-off mr-3"></i>
+                                                Déconnexion
+                                            </a>
+                                        </ul>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>{# end header top bar #}

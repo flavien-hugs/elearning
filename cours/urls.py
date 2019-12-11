@@ -22,7 +22,7 @@ urlpatterns = [
     path('create/', views.CoursCreateView.as_view(), name='cours_create'),
     path('edit/<pk>/', views.CoursUpdateView.as_view(), name='cours_edit'),
     path('delete/<pk>/', views.CoursDeleteView.as_view(), name='cours_delete'),
-    path('<pk>/module/', views.CoursModuleUpdateView.as_view(), name='cours_module_update'),
+    path('module/<pk>/', views.CoursModuleUpdateView.as_view(), name='cours_module_update'),
     path('module/<int:module_id>/contenu/<model_name>/create/',
         views.ContenuCreateUpdateView.as_view(), name='module_content_create'),
     path('module/<int:module_id>/contenu/<model_name>/<id>/',
@@ -34,5 +34,5 @@ urlpatterns = [
 
     path('matiere/<slug:matiere>/', views.CoursListView.as_view(),
         name='cours_liste_matiere'),
-    path('<slug:slug>/', views.CoursDetailView.as_view(), name='cours_detail'),
+    path('detail/<slug:slug>/', views.CoursDetailView.as_view(), name='cours_detail'),
 ]

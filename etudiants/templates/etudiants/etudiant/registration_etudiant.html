@@ -3,15 +3,79 @@
 {% block title %}Sign up{% endblock title %}
 
 {% block content %}
-    <h1>Sign up</h1>
+    <div class=" page-holder bg-cover" style="background: url('{{ STATIC_PREFIX }}/img/things.jpeg');">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                    <div class="card card-signin my-5">
+                        <div class="card-body">
+                            <h4 class="card-title text-center text-uppercase font-weight-bold">inscription</h4>
+                            <button class="shadow-sm btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fa fa-google mr-2"></i> Sign in with Google</button>
+                            <button class="shadow-sm btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fa fa-facebook-f mr-2"></i> Sign in with Facebook</button>
 
-    <div class="module">
-        <p>Enter your details to create an account.</p>
+                            <div class="my-4">
+                                <hr data-content="OU" class="hr-text">
+                            </div>
 
-        <form action="." method="get" accept-charset="utf-8">
-            {{ form.as_p }}
-            {% csrf_token %}
-            <p><input type="submit" name="" value="Create my account"></p>
-        </form>
+                            {% if form.non_field_errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    {% for error in form.non_field_errors %}
+                                        <p {% if forloop.last %} class="mb-0"{% endif %}>
+                                        {{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <p class="text-muted text-center">Please enter your details to create an account.</p>
+                            {% endif %}
+                            <form action="." method="post" class="form-signin">
+                                <div class="form-group">
+                                    <input type="text" id="{{ form.username.id_for_label }}" class="form-control shadow-sm" placeholder="{{ form.username.label }}" name="{{ form.username.name }}" required autofocus>
+                                    <label for="{{ form.username.id_for_label }}">
+                                        {{ form.username.label }}
+                                    </label>
+                                </div><!-- /.username input -->
+
+                                <div class="form-group">
+                                    <input type="password" id="{{ form.password1.id_for_label }}" class="form-control shadow-sm" placeholder="{{ form.password1.label }}" name="{{ form.password1.name }}" required>
+                                    <label for="{{ form.password1.id_for_label }}">
+                                        {{ form.password1.label }}
+                                    </label>
+                                </div><!-- /.password input -->
+
+                                <div class="form-group">
+                                    <input type="password" id="{{ form.password2.id_for_label }}" class="form-control shadow-sm" placeholder="{{ form.password2.label }}" name="{{ form.password2.name }}" required>
+                                    <label for="{{ form.password2.id_for_label }}">
+                                        {{ form.password2.label }}
+                                    </label>
+                                </div><!-- /.password input -->
+                                {% csrf_token %}
+
+                                <div class="custom-control custom-checkbox mb-3">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                    <label class="custom-control-label text-justify" for="customCheck1">
+                                        J'ai lu et j'accepte les <a href="#"><u>Conditions Générales d'Utilisation</u></a> et la <a href="#">
+                                            <u>Politique de Protection des Données Personnelles</u>
+                                        </a>.
+                                    </label>
+                                </div>
+
+                                <button class="shadow-sm btn btn-lg btn-primary btn-block text-uppercase" type="submit">s'inscrire</button>
+
+                                <hr class="my-3">
+
+                                <div class="">
+                                    <p class="text-center font-small grey-text">
+                                        Vous avez déjà un compte ?
+                                        <a href="{% url "etudiant:etudiant_registration" %}" class="dark-grey-text text-capitalize font-weight-bold ml-1">
+                                            <u>Connectez-vous</u>
+                                        </a>
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock content %}

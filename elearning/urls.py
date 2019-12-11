@@ -29,7 +29,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('cours/', include('cours.urls', namespace='cours')),
     path('', CoursListView.as_view(), name='liste_cours'),
-    path('etudiants/', include('etudiants.urls', namespace='etudiant')),
+    path('etudiant/', include('etudiants.urls', namespace='etudiant')),
 ]
 
 

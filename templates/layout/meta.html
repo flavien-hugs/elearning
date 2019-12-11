@@ -1,0 +1,59 @@
+    {% load static %}
+    {% get_static_prefix as STATIC_PREFIX %}
+
+    <head>
+        <!--[if IE 7]><html class="ie ie7"><![endif]-->
+        <!--[if IE 8]><html class="ie ie8"><![endif]-->
+        <!--[if IE 9]><html class="ie ie9"><![endif]-->
+
+        <meta charset="UTF-8">
+        <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <meta name="description" content="Free HTML5 Website Template by freehtml5.co">
+        <meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive">
+        <meta name="author" content="freehtml5.co">
+
+        <!-- Facebook and Twitter integration -->
+        <meta property="og:title" content="">
+        <meta property="og:image" content="">
+        <meta property="og:url" content="">
+        <meta property="og:site_name" content="">
+        <meta property="og:description" content="">
+        <meta name="twitter:title" content="">
+        <meta name="twitter:image" content="">
+        <meta name="twitter:url" content="">
+        <meta name="twitter:card" content="">
+
+        <!-- <link rel="manifest" href="site.webmanifest"> -->
+        <link rel="shortcut icon" type="image/x-icon" href="{{ STATIC_PREFIX }}img/favicon.png">
+        <!-- Place favicon.ico in the root directory -->
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{{ STATIC_PREFIX }}css/bootstrap.css">
+        <link rel="stylesheet" href="{{ STATIC_PREFIX }}vendors/linericon/style.css">
+        <link rel="stylesheet" href="{{ STATIC_PREFIX }}css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{ STATIC_PREFIX }}vendors/owl-carousel/owl.carousel.min.css">
+        <link rel="stylesheet" href="{{ STATIC_PREFIX }}vendors/lightbox/simpleLightbox.css">
+        <link rel="stylesheet" href="{{ STATIC_PREFIX }}vendors/nice-select/css/nice-select.css">
+        <link rel="stylesheet" href="{{ STATIC_PREFIX }}vendors/animate-css/animate.css">
+        <!-- main css -->
+        <link rel="stylesheet" href="{{ STATIC_PREFIX }}css/style.css">
+        <!-- FOR IE9 below -->
+        <!--[if lt IE 9]>
+        <script src="js/respond.min.js"></script>
+        <![endif]-->
+
+        <!--[if IE 7]><body class="ie7 lt-ie8 lt-ie9 lt-ie10"><![endif]-->
+        <!--[if IE 8]><body class="ie8 lt-ie9 lt-ie10"><![endif]-->
+        <!--[if IE 9]><body class="ie9 lt-ie10"><![endif]-->
+
+        <title>
+            {% block title %}
+            {% if matiere %}
+                {{ matiere.title }} &mdash;
+            {% else %}
+                Education &mdash; Free Website Template, Free HTML5 Template by freehtml5.co
+            {% endif %}
+                Education
+            {% endblock title %}
+        </title>
+    </head>
