@@ -30,7 +30,6 @@ class Matieres(models.Model):
     slug = models.SlugField('URL', max_length=200, unique=True)
 
     class Meta:
-        verbose_name = 'Matière'
         ordering = ['title']
 
     def __str__(self):
@@ -50,7 +49,6 @@ class Cours(models.Model):
     date_de_creation = models.DateField('Date de création du Cours', auto_now_add=True)
 
     class Meta:
-        verbose_name = 'Cours'
         ordering = ['-date_de_creation']
 
     def __str__(self):
@@ -73,10 +71,9 @@ class Modules(models.Model):
     cours = models.ForeignKey(Cours, related_name='modules', on_delete=models.CASCADE)
     title = models.CharField('Titre du Module', max_length=200)
     description = models.TextField('Description du Cours', blank=True)
-    ordre = ChampsPerso(blank=True, for_fields={'cours'})
+    ordre = ChampsPerso(blank=True, for_fields=['cours'])
 
     class Meta:
-        verbose_name = 'Module'
         ordering = ['ordre']
 
     def __str__(self):
@@ -91,10 +88,10 @@ class Contenus(models.Model):
     content_types = models.ForeignKey(ContentType, on_delete=models.CASCADE,
         limit_choices_to={
             'model__in':(
-                'ContenuText',
-                'ContenuFichier',
-                'ContenuImage',
-                'ContenuVideo'
+                'text',
+                'video',
+                'image',
+                'file'
             )
         }
     )
@@ -103,7 +100,6 @@ class Contenus(models.Model):
     ordre = ChampsPerso(blank=True, for_fields=['module'])
 
     class Meta:
-        verbose_name = 'Contenu'
         ordering = ['ordre']
 
 
@@ -111,7 +107,7 @@ class TypeContenu(models.Model):
     instructeur = models.ForeignKey(User, related_name='%(class)s_related', on_delete=models.CASCADE)
     title = models.CharField('Titre du contenu', max_length=250)
     date_de_creation = models.DateTimeField('Date de création', auto_now_add=True)
-    date_mise_a_jour = models.DateTimeField('Date de mise en ligne', auto_now_add=True)
+    date_mise_a_jour = models.DateTimeField('Date de mise en ligne', auto_now=True)
 
     class Meta:
         abstract = True
@@ -137,4 +133,4 @@ class Image(TypeContenu):
 
 
 class Video(TypeContenu):
-    video_url = models.URLField("Ajouter l'url de la video")
+    url = models.URLField("Ajouter l'url de la video")

@@ -1,81 +1,30 @@
 {% extends "index.html" %}
-
 {% block title %}{{ object.title }}{% endblock title %}
 
-
-{% block banner_area %}
-    <!--================ Start Home Banner Area =================-->
-    <section class="banner_area">
-        <div class="banner_inner d-flex align-items-center">
-            <div class="overlay"></div>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <div class="banner_content text-center">
-                            <h2>Courses</h2>
-                            <p>
-                                In the history of modern astronomy, there is probably no one greater leap forward than the building and launch
-                                ofthe space telescope known as the Hubble.
-                            </p>
-                            <div class="page_link">
-                                <a href="/"><i class="fa fa-home"></i></a>
-                                <a href="/cours">cours</a>
-                                <a href="#">details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section><!--================ End Home Banner Area =================-->
-{% endblock banner_area %}
-
-
-<!--================ start course details Area =================-->
 {% block department_area %}
-    <div class="course_details_area section_gap">
+    <div class="course_details_area my-4">
         <div class="container">
             <div class="row">
                 {% with matiere=cours.matiere %}
                     <div class="col-lg-8 course_details_left">
                         <div class="main_image">
-                            <img src="{{ STATIC_PREFIX }}img/courses/course-details.jpg" alt="{{ matiere.title }} &mdash; {{ object.title }}" class="img-fluid">
+                            <img src="{{ STATIC_PREFIX }}img/course-details.jpg" alt="{{ matiere.title }} &mdash; {{ object.title }}" class="img-fluid">
                         </div>
 
                         <div class="content_wrapper">
                             <h4 class="title">Objectives</h4>
                             <div class="content">
-                                {{ object.resume }}
+                                {{ object.resume|safe }}
                             </div>
 
                             <h4 class="title">Eligibility</h4>
                             <div class="content">
-                                {{ object.resume }}
+                                {{ object.resume|safe }}
                             </div>
 
                             <h4 class="title">Course Outline</h4>
                             <div class="content">
                                 <ul class="course_list">
-                                    <li class="justify-content-between d-flex">
-                                        <p>Introduction Lesson</p>
-                                        <a class="primary-btn text-uppercase" href="#">View Details</a>
-                                    </li>
-                                    <li class="justify-content-between d-flex">
-                                        <p>Basics of HTML</p>
-                                        <a class="primary-btn text-uppercase" href="#">View Details</a>
-                                    </li>
-                                    <li class="justify-content-between d-flex">
-                                        <p>Getting Know about HTML</p>
-                                        <a class="primary-btn text-uppercase" href="#">View Details</a>
-                                    </li>
-                                    <li class="justify-content-between d-flex">
-                                        <p>Tags and Attributes</p>
-                                        <a class="primary-btn text-uppercase" href="#">View Details</a>
-                                    </li>
-                                    <li class="justify-content-between d-flex">
-                                        <p>Basics of CSS</p>
-                                        <a class="primary-btn text-uppercase" href="#">View Details</a>
-                                    </li>
                                     <li class="justify-content-between d-flex">
                                         <p>Getting Familiar with CSS</p>
                                         <a class="primary-btn text-uppercase" href="#">View Details</a>
@@ -84,15 +33,6 @@
                                         <p>Introduction to Bootstrap</p>
                                         <a class="primary-btn text-uppercase" href="#">View Details</a>
                                     </li>
-                                    <li class="justify-content-between d-flex">
-                                        <p>Responsive Design</p>
-                                        <a class="primary-btn text-uppercase" href="#">View Details</a>
-                                    </li>
-                                    <li class="justify-content-between d-flex">
-                                        <p>Canvas in HTML 5</p>
-                                        <a class="primary-btn text-uppercase" href="#">View Details</a>
-                                    </li>
-
                                 </ul>
                             </div>
                         </div>

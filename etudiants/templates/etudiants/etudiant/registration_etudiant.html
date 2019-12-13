@@ -1,9 +1,8 @@
 {% extends "base.html" %}
-
 {% block title %}Sign up{% endblock title %}
 
 {% block content %}
-    <div class=" page-holder bg-cover" style="background: url('{{ STATIC_PREFIX }}/img/things.jpeg');">
+    <div class=" page-holder bg-cover" style="background: url('{{ STATIC_PREFIX }}img/things.jpeg');">
         <div class="container">
             <div class="row">
                 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -30,26 +29,18 @@
                             <form action="." method="post" class="form-signin">
                                 <div class="form-group">
                                     <input type="text" id="{{ form.username.id_for_label }}" class="form-control shadow-sm" placeholder="{{ form.username.label }}" name="{{ form.username.name }}" required autofocus>
-                                    <label for="{{ form.username.id_for_label }}">
-                                        {{ form.username.label }}
-                                    </label>
                                 </div><!-- /.username input -->
 
                                 <div class="form-group">
                                     <input type="password" id="{{ form.password1.id_for_label }}" class="form-control shadow-sm" placeholder="{{ form.password1.label }}" name="{{ form.password1.name }}" required>
-                                    <label for="{{ form.password1.id_for_label }}">
-                                        {{ form.password1.label }}
                                     </label>
                                 </div><!-- /.password input -->
 
                                 <div class="form-group">
                                     <input type="password" id="{{ form.password2.id_for_label }}" class="form-control shadow-sm" placeholder="{{ form.password2.label }}" name="{{ form.password2.name }}" required>
-                                    <label for="{{ form.password2.id_for_label }}">
-                                        {{ form.password2.label }}
-                                    </label>
                                 </div><!-- /.password input -->
-                                {% csrf_token %}
 
+                                {% csrf_token %}
                                 <div class="custom-control custom-checkbox mb-3">
                                     <input type="checkbox" class="custom-control-input" id="customCheck1">
                                     <label class="custom-control-label text-justify" for="customCheck1">

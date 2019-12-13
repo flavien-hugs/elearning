@@ -31,7 +31,7 @@
         <form action="{% url "etudiant:etudiant_enrollement_cours" %}" method="post">
             {{ formulaire_enrollement }}
             {% csrf_token %}
-            <input type="submit" class="primary-btn text-uppercase enroll" value="Enroll now">
+            <input type="submit" class="primary-btn text-uppercase enroll shadow-none" value="Enroll now">
         </form>
         {% else %}
             <a href="{% url "etudiant:etudiant_registration" %}" class="primary-btn text-uppercase enroll">Enroll the course</a>
@@ -82,81 +82,7 @@
             <h6>Your Feedback</h6>
             <textarea name="feedback" class="form-control" cols="10" rows="10"></textarea>
             <div class="mt-10 text-right">
-                <a href="#" class="primary-btn text-right text-uppercase">Submit</a>
-            </div>
-        </div>
-        <div class="comments-area mb-30">
-            <div class="comment-list">
-                <div class="single-comment single-reviews justify-content-between d-flex">
-                    <div class="user justify-content-between d-flex">
-                        <div class="thumb">
-                            <img src="{{ STATIC_PREFIX }}img/blog/c1.jpg" alt="">
-                        </div>
-                        <div class="desc">
-                            <h5><a href="#">Emilly Blunt</a>
-                                <div class="star">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                </div>
-                            </h5>
-                            <p class="comment">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="comment-list">
-                <div class="single-comment single-reviews justify-content-between d-flex">
-                    <div class="user justify-content-between d-flex">
-                        <div class="thumb">
-                            <img src="{{ STATIC_PREFIX }}img/blog/c2.jpg" alt="">
-                        </div>
-                        <div class="desc">
-                            <h5><a href="#">Elsie Cunningham</a>
-                                <div class="star">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                </div>
-                            </h5>
-                            <p class="comment">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="comment-list">
-                <div class="single-comment single-reviews justify-content-between d-flex">
-                    <div class="user justify-content-between d-flex">
-                        <div class="thumb">
-                            <img src="{{ STATIC_PREFIX }}img/blog/c3.jpg" alt="">
-                        </div>
-                        <div class="desc">
-                            <h5><a href="#">Maria Luna</a>
-                                <div class="star">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                </div>
-                            </h5>
-                            <p class="comment">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <a href="#" class="primary-btn text-right text-uppercase shadow-none">Submit</a>
             </div>
         </div>
     </div>

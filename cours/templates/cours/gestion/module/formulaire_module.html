@@ -2,14 +2,49 @@
 {% block title %}Edit "{{ cours.title }}"{% endblock %}
 
 {% block content %}
-    <h1>Edit "{{ cours.title }}"</h1>
-    <div class="module">
-        <h2>Course modules</h2>
-        <form action="" method="post">
-            {{ formset }}
-            {{ formset.management_form }}
-            {% csrf_token %}
-            <input type="submit" class="button" value="Save modules">
-        </form>
+    <div class="popular_courses">
+        <div class="container">
+            <div class="row pb-3">
+                <div class="col-lg-8 col-md-8">
+                    <h3 class="font-italic text-muted mb-1 font-weight-bold">
+                    Edit "{{ cours.title|safe|upper }}"</h3>
+                    <hr class="my-4">
+                    {% if formset.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for error in form.non_field_errors %}
+                                <p {% if forloop.last %} class="mb-0"{% endif %}>
+                                    {{ error }}
+                                </p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <form action="." method="post">
+                        {{ formset.management_form }}
+                        {% for form in formset %}
+                            <div class="mt-10">
+                                <input type="text" id="{{ form.title.id_for_label }}" class="single-input" placeholder="Saisir le titre du module" name="{{ form.title.name }}" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Saisir le titre du module'" required>
+                            </div>
+
+                            <div class="form-group mt-10">
+                                <textarea id="{{ form.description.id_for_label }}" class="form-control shadow-sm mb-10" rows="5" name="{{ form.description.name }}" placeholder="Saisir la description du module" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Saisir la description du module'" required=""></textarea>
+                            </div>
+
+                            {% if formset.can_delete %}
+                                <div class="switch-wrap d-flex">
+                                    <p class="mr-3">{{ form.DELETE.label }}</p>
+                                    <div class="primary-checkbox">
+                                        <input type="checkbox" id="{{ form.DELETE.id_for_label }}" name="{{ form.DELETE.name }}">
+                                        <label for="{{ form.DELETE.id_for_label }}"></label>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% csrf_token %}
+                        <input type="submit" class="shadow-sm btn btn-sm btn-primary btn-block text-uppercase" value="Save modules">
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

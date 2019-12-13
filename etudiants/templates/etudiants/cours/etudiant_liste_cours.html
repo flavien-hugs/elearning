@@ -2,41 +2,21 @@
 
 {% extends "base.html" %}
 {% load cache %}
-
 {% block title %}My courses{% endblock title %}
+
 
 {% block content %}
     {% block banner_area %}
-        <!--================ Start Home Banner Area =================-->
-        <section class="banner_area">
-            <div class="banner_inner d-flex align-items-center">
-                <div class="overlay"></div>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-6">
-                            <div class="banner_content text-center">
-                                <h2>My Courses</h2>
-                                <p>
-                                    In the history of modern astronomy, there is probably no one greater leap forward than the building and launch
-                                    ofthe space telescope known as the Hubble.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section><!--================ End Home Banner Area =================-->
     {% endblock banner_area %}
 
     {% block popular_courses %}
-        <!--================ Start Popular Courses Area =================-->
-        <div class="popular_courses lite_bg">
+        <div class="popular_courses">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 my-4">
-                        <hr data-content="mes cours" class="hr-text">
+                        <hr data-content="mes cours" class="hr-text font-weight-bold">
                     </div>
-                    <!-- table list cours -->
+                    <!-- table liste cours -->
                     <div class="col-lg-12 p-3 rounded shadow-sm">
                         <div class="table-responsive">
                             <table class="table">
@@ -88,17 +68,17 @@
             </div>
         </div>
 
-        <div class="popular_courses lite_bg">
+        <div class="popular_courses">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 my-4">
-                        <hr data-content="Derniers cours publiés " class="hr-text">
+                        <hr data-content="Derniers cours publiés " class="hr-text font-weight-bold">
                     </div>
                     {% for c in object_list %}
                         <div class="col-lg-3 col-md-6">
                             <div class="single_course">
                                 <div class="course_head overlay">
-                                    <img class="img-fluid w-100" src="{{ STATIC_PREFIX }}img/courses/trainer1.jpg" alt="{{ c.title }}">
+                                    <img class="img-fluid w-100" src="{{ STATIC_PREFIX }}img/trainer1.jpg" alt="{{ c.title }}">
                                 </div>
                                 <div class="course_content">
                                     <h4>
@@ -112,8 +92,8 @@
                                                 {{ c.date_de_creation|date:"M Y" }}
                                             </span>
 
-                                            <span class="meta_info text-uppercase">
-                                                <a href="{% url "etudiant:etudiant_detail_cours" c.id %}">access contents</a>
+                                            <span class="text-uppercase">
+                                                <a class="small h5" href="{% url "etudiant:etudiant_detail_cours" c.id %}">access content</a>
                                             </span>
                                         </div>
                                     </div>
@@ -129,6 +109,5 @@
                 </div>
             </div>
         </div>
-        <!--================ End Popular Courses Area =================-->
     {% endblock popular_courses %}
 {% endblock content %}

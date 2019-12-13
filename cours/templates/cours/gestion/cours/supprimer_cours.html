@@ -1,14 +1,18 @@
 {% extends "base.html" %}
-{% block title %}Delete course{% endblock %}
-
+{% block title %}Delete course{% endblock title %}
 
 {% block content %}
-    <h1>Delete course "{{ object.title|safe }}"</h1>
-    <div class="module">
-        <form action="" method="post">
-            {% csrf_token %}
-            <p>Are you sure you want to delete "{{ object }}"?</p>
-            <input type="submit" class"button" value="Confirm">
-        </form>
+    <div class="popular_courses">
+        <div class="container">
+            <h1 class="font-weight-bold mb-1">Delete course
+                <em class="text-success font-weight-bold font-italic">
+                "{{ object.title|title|safe }}"</em>
+            </h1>
+            <p class="font-italic text-muted mb-1">Are you sure you want to delete "{{ object|title|safe }}" ?</p>
+            <form action="." method="post">
+                {% csrf_token %}
+                <button class="shadow-sm btn btn-sm btn-danger text-uppercase" type="submit">valider</button>
+            </form>
+        </div>
     </div>
 {% endblock %}

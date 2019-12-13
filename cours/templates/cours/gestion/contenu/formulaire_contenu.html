@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load static %}{% get_static_prefix as STATIC_PREFIX %}
+
 {% block title %}
     {% if object %}
         Edit content "{{ object.title }}"
@@ -8,20 +10,47 @@
 {% endblock %}
 
 {% block content %}
-    <h1>
-        {% if object %}
-            Edit content "{{ object.title }}"
-        {% else %}
-            Add a new content
-        {% endif %}
-    </h1>
+    <section>
+        <div class="container p-5">
+            <!-- For demo purpose -->
+            <div class="row mb-2 text-center">
+              <div class="col-lg-10 mx-auto">
+                <h1 class="display-4">
+                    {% if object %}
+                        Edit content "{{ object.title }}"
+                    {% else %}
+                        Add a new content
+                    {% endif %}
+                </h1>
 
-    <div class="module">
-        <h2>Course info</h2>
-        <form action="" method="post" enctype="multipart/form-data">
-            {{ form.as_p }}
-            {% csrf_token %}
-            <p><input type="submit" value="Save content"></p>
-        </form>
-    </div>
-{% endblock %}
+                <p class="lead">Course info: Build a simple file upload button using Bootstrap 4.</p>
+              </div>
+            </div>
+            <!-- End -->
+
+            <div class="row">
+                <div class="col-lg-5 mx-auto">
+                    <div class="p-5 bg-white shadow rounded-lg">
+                        <img src="{{ STATIC_PREFIX }}img/upload.png" alt="" width="200" class="d-block mx-auto mb-4 rounded-pill"><!-- Default bootstrap file upload-->
+
+                        <h6 class="text-center mb-4 text-muted">
+                            Or a custom button that launches file browser
+                        </h6>
+
+                        <!-- Custom bootstrap upload file-->
+                        <form action="" method="post" enctype="multipart/form-data">
+                            <input type="text" id="{{ form.title.id_for_label }}" class="single-input shadow-sm mb-3" placeholder="Saisir le titre du module" name="{{ form.title.name }}" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Saisir le titre du module'" required>
+
+                            <label for="{{ form.file.id_for_label }}" class="file-upload btn btn-primary btn-block rounded-pill shadow-sm"><i class="fa fa-upload mr-2"></i>Browse for file ...
+                                <input id="{{ form.file.id_for_label }}" type="file">
+                            </label><!-- End -->
+
+                            {% csrf_token %}
+                            <input type="submit" class="mt-5 shadow-sm btn btn-block btn-success rounded-pill text-uppercase" value="save content">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

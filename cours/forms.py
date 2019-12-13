@@ -16,7 +16,6 @@ from django.forms.models import inlineformset_factory
 
 from .models import Cours, Modules
 
-
 ModuleFormSet = inlineformset_factory(
         Cours, Modules,
         fields=['title', 'description'],

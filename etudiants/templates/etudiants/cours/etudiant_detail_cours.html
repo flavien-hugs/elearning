@@ -1,36 +1,138 @@
 {# Template permettant aux étudiants inscrits d'accéder au contenu d'un cours. #}
 
 {% extends "base.html" %}
-{% load cache %}
+{% load static cache %}
+{% get_static_prefix as STATIC_PREFIX %}
+
 {% block title %}{{ object.title }}{% endblock title %}
 
 {% block content %}
-    <h1>{{ module.title|upper }}</h1>
+    <div class="my-1">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 py-4 text-center mx-auto">
+                    <div>
+                        <h2>Module of the course</h2>
+                        <p>There is a moment in the life of any aspiring astronomer that it is time to buy that first telescope. It’s exciting to think about setting up your own viewing station.</p>
+                    </div>
+                </div>
+            </div>
 
-    <div class="contents">
-        <h3>Modules</h3>
-        <ul id="modules">
-            {% for m in object.modules.all %}
-                <li data-id="{{ m.id }}" {% if m == module %}class="selected"{% endif %}>
-                    <a href="{% url "etudiant:etudiant_detail_cours_module" object.id m.id %}">
-                        <span> Module <span class="order">{{ m.ordre|add:1 }}</span>
-                        </span><br>{{ m.title }}
-                    </a>
-                </li>
-            {% empty %}
-                <li>No modules yet.</li>
-            {% endfor %}
-        </ul>
-    </div>
+            <div class="p-5 bg-white rounded shadow-sm mb-5">
+                <ul class="nav nav-tabs nav-pills flex-column flex-sm-row text-center bg-light border-0 rounded-nav">
+                    {% for m in object.modules.all %}
+                        <li data-id="{{ m.id }}" class="nav-item flex-sm-fill">
+                            <a href="{% url "etudiant:etudiant_detail_cours_module" object.id m.id %}" class="nav-link border-0 text-uppercase font-weight-bold {% if m == module %} active {% endif %}"> Module {{ m.ordre|add:1 }}
+                            </a>
+                        </li>
+                        {% empty %}
+                            <li class="nav-item flex-sm-fill">
+                                <a class="nav-link border-0 text-uppercase font-weight-bold">No modules yet.</a>
+                            </li>
+                    {% endfor %}
+                </ul>
 
-    <div class="module">
-        {% cache 600 module_contenus module %}
-            {% for contenu in module.contenus.all %}
-                {% with item=contenu.item %}
-                    <h2>{{ item.title }}</h2>
-                    {{ item.render }}
-                {% endwith %}
-            {% endfor %}
-        {% endcache %}
+                <div class="tab-content">
+                    {% cache 10 module_contenus module %}
+                        <div class="pt-2 show fade">
+                            <h3>{{ module.title }}</h3>
+                            {% for content in module.contenus.all %}
+                                {% with item=content.item %}
+                                    {{ item.render }}
+                                {% endwith %}
+                            {% endfor %}
+                        </div>
+                    {% endcache %}
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="main_title">
+                        <h2>Our Instructors</h2>
+                        <p>There is a moment in the life of any aspiring astronomer that it is time to buy that first telescope. It’s exciting to think about setting up your own viewing station.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- single-instructor -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_instructor">
+                        <div class="author">
+                            <img src="{{ STATIC_PREFIX }}img/instructors/ins1.jpg" alt="">
+                        </div>
+                        <div class="author_decs">
+                            <h4>Ethel Davis</h4>
+                            <p class="profession">Sr. Faculty Data Science</p>
+                            <p>If you are looking at blank cassettes on the web, you may be very confused at the
+                            difference in price.</p>
+                            <div class="social_icons">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single-instructor -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_instructor">
+                        <div class="author">
+                            <img src="{{ STATIC_PREFIX }}img/instructors/ins2.jpg" alt="">
+                        </div>
+                        <div class="author_decs">
+                            <h4>Rodney Cooper</h4>
+                            <p class="profession">Sr. Faculty Data Science</p>
+                            <p>If you are looking at blank cassettes on the web, you may be very confused at the
+                            difference in price.</p>
+                            <div class="social_icons">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single-instructor -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_instructor">
+                        <div class="author">
+                            <img src="{{ STATIC_PREFIX }}img/instructors/ins3.jpg" alt="">
+                        </div>
+                        <div class="author_decs">
+                            <h4>Dane Walker</h4>
+                            <p class="profession">Sr. Faculty Data Science</p>
+                            <p>If you are looking at blank cassettes on the web, you may be very confused at the
+                            difference in price.</p>
+                            <div class="social_icons">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single-instructor -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_instructor">
+                        <div class="author">
+                            <img src="{{ STATIC_PREFIX }}img/instructors/ins4.jpg" alt="">
+                        </div>
+                        <div class="author_decs">
+                            <h4>Lena Keller</h4>
+                            <p class="profession">Sr. Faculty Data Science</p>
+                            <p>If you are looking at blank cassettes on the web, you may be very confused at the
+                            difference in price.</p>
+                            <div class="social_icons">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock content %}

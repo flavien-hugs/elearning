@@ -20,11 +20,10 @@
                             </a>
                         </div>
                         <div class="col-lg-6 col-sm-6 col-8 header-top-right">
-                            {% if request.user.is_authenticated %}
-                                <a class="text-uppercase" href="{% url "deconnexion" %}">se deconnecter</a>
-                            {% else %}
+                            {% if not request.user.is_authenticated %}
                                 <a class="text-uppercase" href="{% url "connexion" %}">se connecter</a>
                                 <a class="text-uppercase" href="{% url "etudiant:etudiant_registration" %}">s'inscrire</a>
+                            {% else %}
                             {% endif %}
                             <a class="text-uppercase" href="#">en savoir plus</a>
                         </div>
@@ -37,7 +36,7 @@
                     <div class="search_input" id="search_input_box">
                         <div class="container">
                             <form class="d-flex justify-content-between" method="" action="">
-                                <input type="text" class="form-control" id="search_input" placeholder="Rechercher ">
+                                <input type="text" class="form-control" id="search_input" placeholder="Que souhaitez-vous apprendre ?">
                                 <button type="submit" class="btn"></button>
                                 <span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
                             </form>
@@ -49,7 +48,7 @@
                     <div class="container">
                         <!-- Brand and toggle get grouped for better mobile display -->
                         <a class="navbar-brand logo_h" href="/">
-                            <img src="{{ STATIC_PREFIX }}img/logo.png" alt="">
+                            <img src="{{ STATIC_PREFIX }}img/logo.png" alt="{{ title }}">
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,13 +60,13 @@
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul class="nav navbar-nav menu_nav ml-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">parcours</a>
+                                    <a class="nav-link {% if cours == cours %}active{% endif %}" href="{% url "cours:gestion_liste_cours" %}">cours</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link {% if cours == cours %}active{% endif %}" href="cours/">cours</a>
+                                    <a class="nav-link" href="#">edu. for Business</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">alternance</a>
+                                    <a href="#" class="nav-link">Enseigner sur educ.</a>
                                 </li>
                                 {% if request.user.is_authenticated %}
                                     <li class="nav-item">

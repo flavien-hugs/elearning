@@ -1,8 +1,9 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
 
 {% block title %}
     {% if object %}
-        Edit Courses "{{ object.title }}"
+        Edit Courses "{{ object.title|safe }}"
     {% else %}
         Create a new courses
     {% endif %}
@@ -10,20 +11,61 @@
 
 
 {% block content %}
-    <h1>
-        {% if object %}
-            Edit course "{{ object.title|safe }}"
-        {% else %}
-            Create a new course
-        {% endif %}
-    </h1>
 
-    <div class="module">
-        <h2>Course info</h2>
-        <form action="." method="post">
-            {{ form.as_p }}
-        {% csrf_token %}
-            <p><input type="submit" value="Save course"></p>
-        </form>
+    <div class="popular_courses">
+        <div class="container">
+            <div class="row pb-3">
+                <div class="col-lg-8 col-md-8">
+                    <h3 class="font-italic text-muted mb-1 font-weight-bold">
+                        {% if object %}
+                            Edit course "{{ object.title|safe }}"
+                        {% else %}
+                            Create a new course
+                        {% endif %}
+                    </h3>
+                    <hr class="my-4">
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for error in form.non_field_errors %}
+                                <p {% if forloop.last %} class="mb-0"{% endif %}>
+                                    {{ error }}
+                                </p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <h3 class="mb-30 title_color">Course info</h3>
+                    <form action="" method="post">
+                        <div class="mt-10">
+                            <div class="form-select" id="default-select">
+                                <label for="{{ form.matiere.id_for_label }}">
+                                {{ form.matiere.label|upper }}</label>
+                                {{ form.matiere|add_class:"form-control single-input shadow-none text-uppercase" }}
+                            </div>
+                        </div>
+
+                        <div class="mt-5">
+                            <label for="{{ form.title.id_for_label }}">
+                            {{ form.title.label|upper }}</label>
+                            {{ form.title|add_class:"single-input" }}
+                        </div>
+
+                        <div class="mt-4">
+                            <label for="{{ form.slug.id_for_label }}">
+                            {{ form.slug.label|upper }}</label>
+                            {{ form.slug|add_class:"single-input" }}
+                        </div>
+
+                        <div class="my-4">
+                            <label for="{{ form.resume.id_for_label }}">
+                            {{ form.resume.label|upper }}</label>
+                            {{ form.resume|add_class:"single-textarea form-control border-0" }}
+                        </div>
+                        {% csrf_token %}
+
+                        <input type="submit" class="shadow-sm btn btn-sm btn-primary btn-block text-uppercase" value="Save course">
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-{% endblock %}
+{% endblock content %}

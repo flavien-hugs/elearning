@@ -76,7 +76,7 @@ class CoursModuleUpdateView(TemplateResponseMixin, View):
     cours = None
 
     def get_formset(self, data=None):
-        return ModuleFormSet(instance=self.cours, data=data)
+        return ModuleFormSet(instance=self.cours, prefix='module', data=data)
 
     def dispatch(self, request, pk):
         self.cours = get_object_or_404(Cours, id=pk, instructeur=request.user)
@@ -91,6 +91,7 @@ class CoursModuleUpdateView(TemplateResponseMixin, View):
         if formset.is_valid():
             formset.save()
             return redirect('cours:gestion_liste_cours')
+
         return self.render_to_response({'cours': self.cours, 'formset':formset})
 
 

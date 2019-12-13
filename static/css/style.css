@@ -838,7 +838,7 @@ button:focus {
 .fact_area {
   position: relative;
   color: #fff;
-  background-image: url(../img/features-bg1.jpg);
+  background-image: url(../img/things.jpeg);
   background-size: cover;
   z-index: 1;
   padding: 120px 0 90px; }
@@ -3403,55 +3403,8 @@ h6 {
   border-radius: 2rem;
 }
 
-.form-group>input, .form-group>label {
+.form-group>input {
   padding: var(--input-padding-y) var(--input-padding-x);
-}
-
-.form-group>label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  width: 100%;
-  margin-bottom: 0;
-  /* Override default `<label>` margin */
-  line-height: 1.5;
-  color: #495057;
-  border: 1px solid transparent;
-  border-radius: .25rem;
-  transition: all .1s ease-in-out;
-}
-
-.form-group input::-webkit-input-placeholder {
-  color: transparent;
-}
-
-.form-group input:-ms-input-placeholder {
-  color: transparent;
-}
-
-.form-group input::-ms-input-placeholder {
-  color: transparent;
-}
-
-.form-group input::-moz-placeholder {
-  color: transparent;
-}
-
-.form-group input::placeholder {
-  color: transparent;
-}
-
-.form-group input:not(:placeholder-shown) {
-  padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
-  padding-bottom: calc(var(--input-padding-y) / 3);
-}
-
-.form-group input:not(:placeholder-shown)~label {
-  padding-top: calc(var(--input-padding-y) / 3);
-  padding-bottom: calc(var(--input-padding-y) / 3);
-  font-size: 12px;
-  color: #777;
 }
 
 .btn-google {
@@ -3539,4 +3492,80 @@ hr.hr-text::before {
   color: #555;
 }
 
+/* custom tabs */
+
+/* Rounded tabs */
+
+@media (min-width: 576px) {
+  .rounded-nav {
+    border-radius: 50rem !important;
+  }
+}
+
+@media (min-width: 576px) {
+  .rounded-nav .nav-link {
+    border-radius: 50rem !important;
+  }
+}
+
+/* With arrow tabs */
+
+.with-arrow .nav-link.active {
+  position: relative;
+}
+
+.with-arrow .nav-link.active::after {
+  content: '';
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #2b90d9;
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+}
+
+/* lined tabs */
+
+.lined .nav-link {
+  border: none;
+  border-bottom: 3px solid transparent;
+}
+
+.lined .nav-link:hover {
+  border: none;
+  border-bottom: 3px solid transparent;
+}
+
+.lined .nav-link.active {
+  background: none;
+  color: #555;
+  border-color: #2b90d9;
+}
+
+.nav-pills .nav-link {
+  color: #555;
+}
+.text-uppercase {
+  letter-spacing: 0.1em;
+}
+
+/* custom upload */
+
+.file-upload input[type='file'] {
+  display: none;
+}
+
+.rounded-lg {
+  border-radius: 1rem;
+}
+
+.custom-file-label.rounded-pill {
+  border-radius: 50rem;
+}
+
+.custom-file-label.rounded-pill::after {
+  border-radius: 0 50rem 50rem 0;
+}
 /*# sourceMappingURL=style.css.map */

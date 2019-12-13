@@ -4,7 +4,6 @@
 {% block content %}
     <div class="popular_courses">
         <div class="container">
-            {# First row [cours management] #}
             <h2 class="font-weight-bold mb-1">My courses</h2>
             <p class="font-italic text-muted mb-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
 
@@ -13,7 +12,7 @@
                     <div class="col-lg-3 col-md-6 mb-3 mb-lg-2">
                         <div class="card rounded shadow-sm border-0">
                             <div class="card-body p-4">
-                                <img class="img-fluid d-block mx-auto mb-3" src="{{ STATIC_PREFIX }}img/courses/trainer1.jpg" alt="{{ c.title }}">
+                                <img class="img-fluid d-block mx-auto mb-3" src="{{ STATIC_PREFIX }}img/trainer1.jpg" alt="{{ c.title }}">
                                 <h5><a href="{{ cours.get_absolute_url }}" class="text-dark">
                                     {{ cours.title|title|safe }}
                                 </a></h5>

@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # ajout de django-widget-tweaks
+    'widget_tweaks',
     # ajout de l'application etudiants
     'etudiants.apps.EtudiantsConfig',
     # ajout embed video
@@ -132,7 +134,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+
+from django.urls import reverse_lazy
+LOGIN_REDIRECT_URL = reverse_lazy('etudiant:etudiant_liste_cours')
+LOGOUT_URL = reverse_lazy('liste_cours')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
@@ -141,10 +147,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     'static',
 ]
-
-from django.urls import reverse_lazy
-LOGIN_REDIRECT_URL = reverse_lazy('etudiant:etudiant_liste_cours')
-LOGOUT_URL = reverse_lazy('liste_cours')
 
 
 CACHES = {
@@ -155,5 +157,5 @@ CACHES = {
 }
 
 CACHE_MIDDLEWARE_ALIAS = 'default'
-CACHE_MIDDLEWARE_SECONDS = 60 * 15  # 15 minutes
+CACHE_MIDDLEWARE_SECONDS = 60 * 1  # 1 minute
 CACHE_MIDDLEWARE_KEY_PREFIX = 'elearning'
