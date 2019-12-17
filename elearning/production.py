@@ -9,7 +9,7 @@ Copyright (c) 2019 unsta. All rights reserved.
 """
 __author__ = 'Flavien-hugs <contact@unsta.ci>'
 __version__= '0.0.1'
-__copyright__ = '© 2019 unsta projet elaerning'
+__copyright__ = '© 2019 unsta projet elearning'
 
 import dj_database_url
 from elearning.settings import *
@@ -28,7 +28,7 @@ MIDDLEWARE += [
 ]
 #  Add configuration for static files storage using whitenoise
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['elear.herokuapp.com']
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/

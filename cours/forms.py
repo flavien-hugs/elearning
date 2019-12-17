@@ -9,7 +9,7 @@ Copyright (c) 2019 unsta. All rights reserved.
 """
 __author__ = 'Flavien-hugs <contact@unsta.ci>'
 __version__= '0.0.1'
-__copyright__ = '© 2019 unsta projet elaerning'
+__copyright__ = '© 2019 unsta projet elearning'
 
 from django import forms
 from django.forms.models import inlineformset_factory
