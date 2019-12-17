@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Sign up{% endblock title %}
+{% block title %}s'inscrire{% endblock title %}
 
 {% block content %}
     <div class=" page-holder bg-cover" style="background: url('{{ STATIC_PREFIX }}img/things.jpeg');">
@@ -9,8 +9,8 @@
                     <div class="card card-signin my-5">
                         <div class="card-body">
                             <h4 class="card-title text-center text-uppercase font-weight-bold">inscription</h4>
-                            <button class="shadow-sm btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fa fa-google mr-2"></i> Sign in with Google</button>
-                            <button class="shadow-sm btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fa fa-facebook-f mr-2"></i> Sign in with Facebook</button>
+
+                            {% include "inc/social_login.html" %}
 
                             <div class="my-4">
                                 <hr data-content="OU" class="hr-text">
@@ -42,8 +42,8 @@
 
                                 {% csrf_token %}
                                 <div class="custom-control custom-checkbox mb-3">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                    <label class="custom-control-label text-justify" for="customCheck1">
+                                    <input type="checkbox" class="custom-control-input shadow-none" id="customCheck1">
+                                    <label class="custom-control-label" for="customCheck1">
                                         J'ai lu et j'accepte les <a href="#"><u>Conditions Générales d'Utilisation</u></a> et la <a href="#">
                                             <u>Politique de Protection des Données Personnelles</u>
                                         </a>.

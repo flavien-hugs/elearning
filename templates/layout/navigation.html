@@ -23,7 +23,6 @@
                             {% if not request.user.is_authenticated %}
                                 <a class="text-uppercase" href="{% url "connexion" %}">se connecter</a>
                                 <a class="text-uppercase" href="{% url "etudiant:etudiant_registration" %}">s'inscrire</a>
-                            {% else %}
                             {% endif %}
                             <a class="text-uppercase" href="#">en savoir plus</a>
                         </div>

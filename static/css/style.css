@@ -49,6 +49,7 @@ a {
   text-decoration: none;
   transition: all 0.3s ease-in-out; }
   a:hover, a:focus {
+    color: #fff;
     text-decoration: none;
     outline: none; }
 
@@ -137,7 +138,12 @@ button:focus {
 ============================================================================================ */
 /* Start Gradient Area css
 ============================================================================================ */
-.gradient-bg, #search_input_box, .header-top .header-top-right a:hover, .single_feature:nth-child(3), .single_department:hover, .single_course .course_content .course_meta .price, .testimonial_area .owl-thumb-item.active .overlay-grad, .testimonial_area .owl-thumb-item .overlay-grad:hover, .testimonial_area .owl-thumb-item .overlay-grad.active, .registration_area, .categories_post:hover .categories_details, .blog_right_sidebar .widget_title, .blog_right_sidebar .search_widget .input-group .form-control, .blog_right_sidebar .newsletter_widget .bbtns, .blog_right_sidebar .tag_cloud_widget ul li a:hover, .blog-pagination .page-item.active .page-link, .blog-pagination .page-link:hover, .comments-area .btn-reply:hover, .blog_btn:hover, .footer-area .footer-bottom .footer-social a:hover {
+.gradient-bg, #search_input_box,
+.single_feature:nth-child(3), .single_department:hover,
+.single_course .course_content .course_meta .price,
+.testimonial_area .owl-thumb-item.active .overlay-grad,
+.testimonial_area .owl-thumb-item .overlay-grad:hover,
+.testimonial_area .owl-thumb-item .overlay-grad.active, .registration_area, .categories_post:hover .categories_details, .blog_right_sidebar .widget_title, .blog_right_sidebar .search_widget .input-group .form-control, .blog_right_sidebar .newsletter_widget .bbtns, .blog_right_sidebar .tag_cloud_widget ul li a:hover, .blog-pagination .page-item.active .page-link, .blog-pagination .page-link:hover, .comments-area .btn-reply:hover, .blog_btn:hover, .footer-area .footer-bottom .footer-social a:hover {
   background: -webkit-linear-gradient(90deg, #00aee0 0%, #00fedc 100%);
   background: -moz-linear-gradient(90deg, #00aee0 0%, #00fedc 100%);
   background: -ms-linear-gradient(90deg, #00aee0 0%, #00fedc 100%);
@@ -187,7 +193,7 @@ button:focus {
   line-height: 50px;
   border-radius: 0px;
   outline: none !important;
-  box-shadow: 0px 20px 50px rgba(0, 175, 224, 0.3);
+  box-shadow: none;
   text-align: center;
   cursor: pointer;
   -webkit-transition: all 0.3s ease 0s;
@@ -373,6 +379,9 @@ button:focus {
       -moz-transition: all 0.3s ease 0s;
       -o-transition: all 0.3s ease 0s;
       transition: all 0.3s ease 0s; }
+      .header-top .header-top-right a:hover {
+        background-color: rgba(20, 23, 28, .05);
+      }
 
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
@@ -624,8 +633,6 @@ button:focus {
     -moz-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s; }
-  .single_department:hover {
-    box-shadow: 0px 20px 50px rgba(0, 175, 224, 0.3); }
     .single_department:hover img {
       -webkit-filter: brightness(0) invert(1);
       -moz-filter: brightness(0) invert(1);
@@ -3416,6 +3423,8 @@ h6 {
   color: white;
   background-color: #3b5998;
 }
+
+a.btn-facebook:hover, a.btn-google:hover { color: #fff; }
 
 /* Fallback for Edge
 -------------------------------------------------- */

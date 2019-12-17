@@ -12,6 +12,17 @@ __version__= '0.0.1'
 __copyright__ = '© 2019 unsta projet elaerning'
 
 import os
+from django.core.exceptions import ImproperlyConfigured
+
+def get_env_variable(var_name, default_value=None):
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        if default_value is None:
+            error_msg = "Set the {} environment variable".format(var_name)
+            raise ImproperlyConfigured(error_msg)
+        else:
+            return default_value
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,13 +32,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'b^+&1$vwm+hcairl$@7-7xn6(=!pd_xz=hk9#9%_p7&^@dyxam'
+SECRET_KEY = get_env_variable('SECRET_KEY', 'b^+&1$vwm+hcairl$@7-7xn6(=!pd_xz=hk9#9%_p7&^@dyxam')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 DEFAULT_CHARSET = 'utf-8'
-
+DEFAULT_CONTENT_TYPE = 'text/html'
 ALLOWED_HOSTS = []
 
 
